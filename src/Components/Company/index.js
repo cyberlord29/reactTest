@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import '../../index.css'
 import {
   setParams,
+  createTest
 } from '../../actions/company-actions'
 import {
-  Card,
-  Button,
-  Form,
-  FormGroup,
-  Input,
-  Label
+  Card, Button,
+  Form, FormGroup,
+  Input, Label
 } from 'reactstrap'
 import cx from 'classnames'
 import './index.css'
@@ -32,9 +29,9 @@ class Company extends Component {
                 <FormGroup>
                     <Label for="name">Name</Label>
                     <Input 
-                        type="text" 
-                        name="name" 
-                        id="name" 
+                        type="text"
+                        name="name"
+                        id="name"
                         value={testForm.name}
                         onChange={(e)=>{this.props.setParams({id:'name', value:e.target.value})}}
                     />
@@ -50,6 +47,12 @@ class Company extends Component {
                     />                
                 </FormGroup>
             </Form>
+            <Button
+              onClick={ ()=> this.props.createTest({
+                name: testForm.name,
+                description: testForm.description
+              }) }
+            />
           </Card>
       </div>
     )
@@ -58,6 +61,7 @@ class Company extends Component {
 
 Company.propTypes = {
   setParams: PropTypes.func,
+  createTest: PropTypes.createTest
 }
 
 const mapStateToProps = ({ company }) => {
@@ -70,5 +74,6 @@ export default connect(
   mapStateToProps,
   {
     setParams,
+    createTest
   }
 )(Company)

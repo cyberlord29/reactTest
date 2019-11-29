@@ -6,13 +6,6 @@ const app = express();
 // Serve the static files from the React app
 app.use(express.static(path.join('./build')));
 
-// An api endpoint that returns a short list of items
-app.get('/licenses', (req,res) => {
-    var list = ["item1", "item2", "item3"];
-    res.json(list);
-    console.log('Sent list of items');
-});
-
 // Handles any requests that don't match the ones above
 app.get('*', (req,res) =>{
     res.sendFile(path.join('/client/build/index.html'));

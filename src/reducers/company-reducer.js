@@ -4,11 +4,17 @@ import {
 
 const initialState = {
         name: "",
-        description: ""
+        description: "",
+        testList: []
 }
 
 const company = (state = initialState, action) => {
     switch(action.type){
+        case GET_TESTS_SUCCESS:
+            return {
+                ...state,
+                testList:action.payload
+            }
         case SET_PARAM:
         return {
             ...state,
